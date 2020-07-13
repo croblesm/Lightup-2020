@@ -14,12 +14,12 @@
 #   https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest
 
 # 0- Env variables | demo path
-resource_group=PASS-Marathon;
+resource_group=Lightup-2020;
 aks_cluster=endurance
 location=westus
 acr_name=dbamastery;
 az aks get-versions --location $location --output table;
-k8s_version=1.16.7;
+k8s_version=1.16.10;
 vm_size=Standard_DS3_v2;
 cd ~/Documents/$resource_group/Demo_04;
 

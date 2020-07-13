@@ -21,10 +21,10 @@
 #   open https://docs.microsoft.com/en-us/azure/container-instances/container-instances-reference-yaml
 
 # 0- Env variables | demo path
-resource_group=PASS-Marathon
+resource_group=Lightup-2020
 storage_account_name=acivolumes
 location=westus
-aci_group_name=AG-RedScale;
+aci_group_name=ReadScale-AG;
 aci_container_1=rs-master-01;
 aci_container_2=rs-master-02;
 cd ~/Documents/$resource_group/Demo_03;

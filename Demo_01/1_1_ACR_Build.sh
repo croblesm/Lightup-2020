@@ -18,11 +18,15 @@
 #   open https://docs.microsoft.com/en-us/cli/azure/acr?view=azure-cli-latest
 
 # 0- Env variables | demo path
-resource_group=PASS-Marathon;
+resource_group=Lightup-2020;
+location=westus;
 acr_name=dbamastery;
 acr_repo=mssqltools-alpine;
 cd ~/Documents/$resource_group/Demo_01;
 az acr login --name $acr_name;
+
+# 0- Create Azure Resource group
+az group create -l $location -n $resource_group
 
 # 1- Create Azure Container Registry
 az acr create --resource-group $resource_group --name $acr_name --sku Standard --location westus
@@ -35,7 +39,7 @@ az acr list --resource-group $resource_group -o table
 code Dockerfile
 
 # 4- Build local image - mssqltools
-docker build . -t mssqltools-alpine -f Dockerfile
+docker build . -t mssqltools-alpine
 
 # 5- Tag and push local image to ACR repository
 # Listing local image
@@ -46,12 +50,12 @@ image_id=`docker images | grep mssqltools-alpine | awk '{ print $3 }' | head -1`
 
 # Tagging image with private registry and build number
 # ACR FQN = dbamastery.azurecr.io/mssqltools-alpine:2.0
-docker tag $image_id $acr_name.azurecr.io/$acr_repo:2.0
-docker images
+docker tag $image_id $acr_name.azurecr.io/$acr_repo:1.0
+docker images dbamastery.azurecr.io/mssqltools-alpine
 
 # Pushing image to ACR (dbamastery) - mssqltools-alpine repository
 # Make sure to check ACR authentication and login process with Docker first
-docker push $acr_name.azurecr.io/$acr_repo:2.0
+docker push $acr_name.azurecr.io/$acr_repo:1.0
 
 # --------------------------------------
 # Visual Studio Code extension - step
@@ -65,7 +69,7 @@ docker push $acr_name.azurecr.io/$acr_repo:2.0
 open https://portal.azure.com
 
 # Navigate to cloud share
-cd clouddrive/PASS-Marathon/Demo_01
+cd clouddrive/Lightup-2020/Demo_01
 ls -ll
 
 # Build, tag and push in a single instruction
