@@ -29,11 +29,11 @@ kubectl apply -f ./services/srvc-sql-plex.yaml
 kubectl apply -f ./deployments/depl-sql-plex.yaml --record
 
 # 2- Check namespace, secret, pvc, service and pod
-kubectl get pvc --namespace=plex-sql
-kubectl get services --namespace=plex-sql
-kubectl get pods --namespace=plex-sql
+kubectl get pvc
+kubectl get services
+kubectl get pods
 pod=`kubectl get pods | grep mssql-plex-deployment | awk {'print $1'}`
-kubectl describe pods $pod
+kubectl describe pods $pod --namespace=plex-sql
 
 # 3- Check pod logs
 kubectl logs $pod -f

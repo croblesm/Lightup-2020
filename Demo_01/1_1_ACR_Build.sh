@@ -50,12 +50,12 @@ image_id=`docker images | grep mssqltools-alpine | awk '{ print $3 }' | head -1`
 
 # Tagging image with private registry and build number
 # ACR FQN = dbamastery.azurecr.io/mssqltools-alpine:2.0
-docker tag $image_id $acr_name.azurecr.io/$acr_repo:1.0
+docker tag $image_id $acr_name.azurecr.io/$acr_repo:2.0
 docker images dbamastery.azurecr.io/mssqltools-alpine
 
 # Pushing image to ACR (dbamastery) - mssqltools-alpine repository
 # Make sure to check ACR authentication and login process with Docker first
-docker push $acr_name.azurecr.io/$acr_repo:1.0
+docker push $acr_name.azurecr.io/$acr_repo:2.0
 
 # --------------------------------------
 # Visual Studio Code extension - step
